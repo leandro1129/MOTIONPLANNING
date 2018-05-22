@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<launch>
+  <include file="$(find rplidar_ros)/launch/rplidar_tf.launch" />
+  <include file="$(find zed_wrapper)/launch/zed_camera.launch" />
+  <include file="$(find i2c_imu)/launch/mpu_9250.launch" />
+  <node pkg="rosbag" type="record" name="rosbag_record_outside"
+	args="record -o /media/nvidia/rosbagger/Rosbag_1/outdoor/ /rgb/camera_info /rgb/camera_info_raw /rgb/image_rect_color
+    /zed_wrapper_node/parameter_descriptions /zed_wrapper_node/parameter_updates /joint_states /scan /tf /tf_static /imu /odom_zed" />
+</launch>

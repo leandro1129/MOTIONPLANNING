@@ -1,6 +1,7 @@
 <launch>
     <include file="$(find rplidar_ros)/launch/rplidar.launch" />
     <include file="$(find rplidar_ros)/launch/hectormapping.launch" />
+    <include file="$(find odom_tf)/launch/odom_tf_publisher.launch" />
     <!--node name="rviz_slam" pkg="rviz" type="rviz" args="-d $(find rplidar_ros)/rviz/slam.rviz" /-->
   	<!--- Run optimization test node -->
    	<node pkg="teb_local_planner" type="test_optim_node" name="test_optim_node" output="screen" />

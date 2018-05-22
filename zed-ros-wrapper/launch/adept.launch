@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<launch>
+  <include file="$(find rplidar_ros)/launch/rplidar.launch" />
+  <include file="$(find zed_wrapper)/launch/zed_camera.launch" />
+  <include file="$(find i2c_imu)/launch/mpu_9250.launch" />
+</launch>
