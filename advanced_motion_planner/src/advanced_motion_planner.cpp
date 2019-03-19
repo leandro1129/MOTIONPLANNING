@@ -13,28 +13,28 @@ int main(int argc, char** argv) {
     pubDirection = nh.advertise<geometry_msgs::PoseStamped>("bmp/direction", 10);
     pubAck = nh.advertise<ackermann_msgs::AckermannDriveStamped>("vesc/high_level/ackermann_cmd_mux/input/default", 10);
 
-    ros::Rate rate(40.0);
-    std::cout << "Running the advanced motion planner." << std::endl;
+    ros::Rate rate(40.0f);
+    std::cout << "Running the advanced motion planner.\n";
 
     while (nh.ok()) {
         ros::spinOnce();
 
         if (!motionComputer.computeMotion()) {
-            std::cout << "ERROR: Cannot compute motion." << std::endl;
+            std::cout << "ERROR: Cannot compute motion.\n";
             return -1;
         }
 
-        float steeringAngle = 0;
+        float steeringAngle = 0.0f;
 
         if (!motionComputer.visibleCloud.empty()) {
 
             // Computed angle
             steeringAngle = motionComputer.direction[2];
-            if (steeringAngle > 0.34) {
-                steeringAngle = 0.34;
+            if (steeringAngle > 0.34f) {
+                steeringAngle = 0.34f;
             }
-            if (steeringAngle < -0.34) {
-                steeringAngle = -0.34;
+            if (steeringAngle < -0.34f) {
+                steeringAngle = -0.34f;
             }
 
             // Computed direction
@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
         // 0 or computed angle from motionComputer
         ackMsg.drive.steering_angle = steeringAngle;
         // Use fixed speed (m/s)
-        ackMsg.drive.speed = 0.5;
+        ackMsg.drive.speed = 0.5f;
 
         pubAck.publish(ackMsg);
 

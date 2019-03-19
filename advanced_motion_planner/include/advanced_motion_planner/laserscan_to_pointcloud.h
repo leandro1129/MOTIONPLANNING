@@ -11,11 +11,9 @@
 class LaserScanToPointCloud {
 private:
     bool filter(float range, float angle);
-    
-public:
-    LaserScanToPointCloud() {
-    }
 
+public:
+    LaserScanToPointCloud() {}
     pcl::PointCloud<pcl::PointXYZ> scanToCloud(const sensor_msgs::LaserScan &scan, bool insideFilter);
 };
 
